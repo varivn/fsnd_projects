@@ -85,5 +85,24 @@
     <button class="btn btn-primary btn-lg">Edit</button>
 </a>
 
+<button class="btn btn-danger btn-lg delete-button" data-id="{{ venue.id }}">
+    Delete
+</button>
+
+<script>
+    const deleteBtn = document.querySelector('.delete-button');
+    deleteBtn.onclick = e => {
+        e.preventDefault()
+        const theId = e.target.dataset['id'];
+        console.log('delete', theId);
+        fetch('/venues/'+theId+'/delete', {
+            method : 'DELETE'
+        })
+        .then((response) => {
+            window.location = "/";
+        })
+    }
+</script>
+
 {% endblock %}
 
